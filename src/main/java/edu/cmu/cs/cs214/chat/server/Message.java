@@ -10,76 +10,65 @@ import java.util.Date;
  *
  */
 public class Message implements Serializable {
-    private static final long serialVersionUID = 6342932337190682969L;
-    private String content;
-    private Date timestamp;
-    private String sender;
+  private static final long serialVersionUID = 6342932337190682969L;
+  private String content;
+  private Date timestamp;
+  private String sender;
 
+  /**
+   * Constructor to create a message
+   * 
+   * @param message
+   *          Body of the message
+   * @param messageSender
+   *          Sender of the message
+   */
+  public Message(String message, String messageSender) {
+    this.content = message;
+    this.sender = messageSender;
+    this.timestamp = new Date();
+  }
 
-    // TODO: Make the message also include a timestamp for when the server
-    // received the message. To implement, it is necessary to create a fields
-    // and the corresponding getter/setters. After that, it is necessary to
-    // modify the server to set a timestamp when it receives a message
+  /**
+   * Constructor to create a message with a specified timestamp
+   * 
+   * @param message
+   *          Body of the message
+   * @param messageSender
+   *          Sender of the message
+   * @param messageTimestamp
+   *          Timestamp of the message
+   */
+  public Message(String message, String messageSender, Date messageTimestamp) {
+    this.content = message;
+    this.sender = messageSender;
+    this.timestamp = new Date(messageTimestamp.getTime());
+  }
 
-    /**
-     * Constructor to create a message
-     * 
-     * @param message
-     *            Body of the message
-     * @param messageSender
-     *            Sender of the message
-     */
-    public Message(String message, String messageSender) {
-        this.content = message;
-        this.sender = messageSender;
-        this.timestamp = new Date();
-    }
+  /**
+   * @return the content
+   */
+  public String getContent() {
+    return content;
+  }
 
+  /**
+   * @return the timestamp
+   */
+  public Date getTimestamp() {
+    return new Date(timestamp.getTime());
+  }
 
-    /**
-     * Constructor to create a message with a specified timestamp
-     * 
-     * @param message
-     *            Body of the message
-     * @param messageSender
-     *            Sender of the message
-     * @param messageTimestamp
-     *            Timestamp of the message
-     */
-    public Message(String message, String messageSender, Date messageTimestamp) {
-        this.content = message;
-        this.sender = messageSender;
-        this.timestamp = new Date(messageTimestamp.getTime());
-    }
+  /**
+   * @return the sender
+   */
+  public String getSender() {
+    return sender;
+  }
 
-
-    /**
-     * @return the content
-     */
-    public String getContent() {
-        return content;
-    }
-
-
-    /**
-     * @return the timestamp
-     */
-    public Date getTimestamp() {
-        return new Date(timestamp.getTime());
-    }
-
-
-    /**
-     * @return the sender
-     */
-    public String getSender() {
-        return sender;
-    }
-
-
-    @Override
-    public String toString() {
-        return String.format("[%s] %s: %s", timestamp, sender, content);
-    }
+  @Override
+  public String toString() {
+    return String.format("[%s] %s: %s", timestamp, sender, content);
+  }
 
 }
